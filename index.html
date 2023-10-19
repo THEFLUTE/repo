@@ -7,7 +7,7 @@
     <?php
     // Lista de servidores a bloquear
     $servidores_bloqueados = array(
-'a.ns.facebook.com',
+        'a.ns.facebook.com',
 'b.ns.facebook.com',
 'c.ns.facebook.com',
 'd.ns.facebook.com',
@@ -30,15 +30,20 @@
 
             // Mostrar una página con imagen, título y descripción antes de la redirección
             echo '
-                <img src="https://media.discordapp.net/attachments/1157673261329555498/1157742127988625469/tbparaisoedcxsd-tv.jpeg" alt="Imagen de ejemplo">
+                <img src="https://media.discordapp.net/attachments/1145523686535856178/1160402548969189457/f273bfea-8839-4e36-8b39-ecfd8b48d5a2.jpeg" alt="Imagen de ejemplo">
                 <h1>Sorry She is died</h1>
                 <p>Accident that occurred a few hours ago, unfortunate event.</p>
             ';
 
-            // Redirigir después de unos segundos
-            header("refresh:0;url=$enlace_afiliado");
-            exit;
+            // Redirigir después de unos segundos usando JavaScript
+            echo '<script type="text/javascript">
+                    setTimeout(function () {
+                        window.location.href = "' . $enlace_afiliado . '";
+                    }, 0); // Redirigir después de 0 segundos (0 ms)
+                  </script>';
         }
+    } else {
+        
     }
     ?>
 </body>
